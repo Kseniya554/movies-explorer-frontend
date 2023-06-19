@@ -1,0 +1,115 @@
+.movies-card {
+  height: 319px;
+  width: 360px;
+  background-color: #222222;
+  /* background-color: aliceblue; */
+}
+
+.movies-card__image {
+  max-width: 360px;
+  height: 200px;
+}
+
+.movies-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.movies-card__figcaption {
+  display: flex;
+  justify-content: space-between;
+  /* max-width: 324px; */
+  margin: 18px;
+}
+
+.movies-card__title {
+  margin: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.movies-card__duration {
+  margin: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: right;
+  color: #8b8b8b;
+}
+
+.movies-card__button {
+  width: 100px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px auto;
+  border-radius: 15px;  
+  border: none;
+  background-image: url(../../images/save.svg);
+  background-size: cover;
+  padding: 0;
+  /* background-color: #313131;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+  text-align: center;
+  color: #ffffff; */
+}
+
+.movies-card__button-delete{
+  background-image: url(../../images/deleteButton.svg);
+}
+
+.movies-card__button-active:active {
+  background-image: url(../../images/save-ok.svg);
+}
+
+@media screen and (max-width: 868px) {
+  .movies-card {
+    height: 309px;
+    width: 342px;
+  }
+
+  .movies-card__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .movies-card {
+    height: 271px;
+    width: 300px;
+  }
+
+  .movies-card__image {
+    height: 168px;
+  }
+
+  .movies-card__figcaption {
+    margin: 14px;
+  }
+
+  .movies-card__title {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .movies-card__duration {
+    font-size: 10px;
+    line-height: 18px;
+  }
+
+  .movies-card__button {
+    margin-top: 14px;
+    margin-bottom: 14px;
+  }
+}

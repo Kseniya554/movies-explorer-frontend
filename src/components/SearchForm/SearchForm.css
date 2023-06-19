@@ -1,0 +1,105 @@
+.search-form {
+  width: 89%;
+  margin: 70px auto 10px;
+  padding-bottom: 69px;
+  border-bottom: 1px solid #424242;
+}
+
+.search-form__form {
+  background-color: #2f2f2f;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 72px;
+  /* height: 34px; */
+  /* margin-top: 19px; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  /* vertical-align: middle; */
+}
+
+.search-form__input-block {
+  width: 80%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.search-form__input {
+  background-color: #2f2f2f;
+  border: none;
+  margin-left: 19px;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #8b8b8b;
+  width: 85%;
+  /* margin-top: 25px; */
+}
+
+.search-form__input::placeholder {
+  background-image: url(../../images/find2.svg);
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  background-position: center left;
+}
+
+.search-form__button {
+  background-color: #2f2f2f;
+  height: 34px;
+  background-image: url(../../images/find.svg);
+  width: 15%;
+  padding: 0;
+  background-size: 34px 34px;
+  background-repeat: no-repeat;
+  border: none;
+  background-position: right;
+  box-sizing: border-box;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.search-form__input-error {
+}
+
+@media screen and (max-width: 868px) {
+  .search-form {
+    width: 92.1875%;
+    padding-bottom: 44px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .search-form__form {
+    flex-direction: column;
+    justify-content: center;
+    background-color: #202020;
+    min-height: 137px;
+  }
+
+  .search-form__input-block {
+    width: 100%;
+    background-color: #2f2f2f;
+    border-radius: 10px;
+    height: 72px;
+  } 
+
+  .search-form__button {
+    margin-right: 19px;
+  }
+
+  .search-form__input {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .search-form__input::placeholder {
+    background-image: none;
+    transform: translateX(-32px);
+  }
+}
