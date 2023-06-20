@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
 // import buttonProfile from '../../images/profile.svg';
+import burgerButton from '../../images/burger-menu.svg';
+import closeButton from '../../images/close.svg';
 
 function Navigation() {
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // const handleMenuClick = () => setIsMenuOpen(true);
   const location = useLocation();
@@ -37,17 +39,11 @@ function Navigation() {
           >
             Аккаунт
           </Link>
-          {/* <div className='navigation__burger'>
-            <span></span>
-          </div> */}
-          {/* <button
-            className='navigation__burger'
-            onClick={handleMenuClick}
-          /> */}
         </div>
       )}
       {location.pathname === '/saved-movies' && (
-        <div className='navigation__movies navbar'>
+        <>
+        <div className={isMenuOpen ? ['navigation__movies, navigation__movies_active'].join(' ') : ['navigation__movies'] }>
           <div className='navigation__links'>
             <Link className='navigation__link' to='/movies'>
               Фильмы
@@ -62,10 +58,13 @@ function Navigation() {
             className='navigation__link navigation__link-profile'
           >
             Аккаунт
-          </Link>
-
-         
-        </div>
+          </Link>   
+        </div>        
+        <div onClick={() => setIsMenuOpen(!isMenuOpen)} className='burger-menu'>
+          {isMenuOpen ? <img className='burger-menu__button' src={closeButton} alt='крестик' /> : <img className='burger-menu__button' src={burgerButton} alt='иконка меню' />}
+          
+        </div> 
+      </>
       )}
     </nav>
   );
