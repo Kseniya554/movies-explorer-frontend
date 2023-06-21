@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
 // import buttonProfile from '../../images/profile.svg';
@@ -24,9 +24,29 @@ function Navigation() {
         </div>
       )}
       {location.pathname === '/movies' && (
-        <div className='navigation__movies'>
+        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground_none' }>
+        <div
+          className={
+            isMenuOpen
+              ? ['navigation__movies', 'navigation__movies_active'].join(' ')
+              : 'navigation__movies'
+          }
+        >
           <div className='navigation__links'>
-            <Link className='navigation__link' to='/movies'>
+            <Link
+              className={
+                isMenuOpen
+                  ? ['navigation__main-link']
+                  : ['navigation__main-link_disabled']
+              }
+              to='/'
+            >
+              Главная
+            </Link>
+            <Link
+              className='navigation__link navigation__link-film'
+              to='/movies'
+            >
               Фильмы
             </Link>
             <Link className='navigation__link' to='/saved-movies'>
@@ -40,31 +60,139 @@ function Navigation() {
             Аккаунт
           </Link>
         </div>
+        <div
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className='burger-menu'
+        >
+          {isMenuOpen ? (
+            <img
+              className='burger-menu__button burger-menu__button-close'
+              src={closeButton}
+              alt='крестик'
+            />
+          ) : (
+            <img
+              className='burger-menu__button'
+              src={burgerButton}
+              alt='иконка меню'
+            />
+          )}
+        </div>
+      </section>
       )}
       {location.pathname === '/saved-movies' && (
-        <>
-        <div className={isMenuOpen ? ['navigation__movies, navigation__movies_active'].join(' ') : ['navigation__movies'] }>
-          <div className='navigation__links'>
-            <Link className='navigation__link' to='/movies'>
-              Фильмы
-            </Link>
-            <Link className='navigation__link' to='/saved-movies'>
-              Сохранённые фильмы
-            </Link>
-            
-          </div>
-          <Link
-            to='/profile'
-            className='navigation__link navigation__link-profile'
+        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground_none' }>
+          <div
+            className={
+              isMenuOpen
+                ? ['navigation__movies', 'navigation__movies_active'].join(' ')
+                : 'navigation__movies'
+            }
           >
-            Аккаунт
-          </Link>   
-        </div>        
-        <div onClick={() => setIsMenuOpen(!isMenuOpen)} className='burger-menu'>
-          {isMenuOpen ? <img className='burger-menu__button' src={closeButton} alt='крестик' /> : <img className='burger-menu__button' src={burgerButton} alt='иконка меню' />}
-          
-        </div> 
-      </>
+            <div className='navigation__links'>
+              <Link
+                className={
+                  isMenuOpen
+                    ? ['navigation__main-link']
+                    : ['navigation__main-link_disabled']
+                }
+                to='/'
+              >
+                Главная
+              </Link>
+              <Link
+                className='navigation__link navigation__link-film'
+                to='/movies'
+              >
+                Фильмы
+              </Link>
+              <Link className='navigation__link' to='/saved-movies'>
+                Сохранённые фильмы
+              </Link>
+            </div>
+            <Link
+              to='/profile'
+              className='navigation__link navigation__link-profile'
+            >
+              Аккаунт
+            </Link>
+          </div>
+          <div
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className='burger-menu'
+          >
+            {isMenuOpen ? (
+              <img
+                className='burger-menu__button burger-menu__button-close'
+                src={closeButton}
+                alt='крестик'
+              />
+            ) : (
+              <img
+                className='burger-menu__button'
+                src={burgerButton}
+                alt='иконка меню'
+              />
+            )}
+          </div>
+        </section>
+      )}
+      {location.pathname === '/profile' && (
+        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground_none' }>
+          <div
+            className={
+              isMenuOpen
+                ? ['navigation__movies', 'navigation__movies_active'].join(' ')
+                : 'navigation__movies'
+            }
+          >
+            <div className='navigation__links'>
+              <Link
+                className={
+                  isMenuOpen
+                    ? ['navigation__main-link']
+                    : ['navigation__main-link_disabled']
+                }
+                to='/'
+              >
+                Главная
+              </Link>
+              <Link
+                className='navigation__link navigation__link-film'
+                to='/movies'
+              >
+                Фильмы
+              </Link>
+              <Link className='navigation__link' to='/saved-movies'>
+                Сохранённые фильмы
+              </Link>
+            </div>
+            <Link
+              to='/profile'
+              className='navigation__link navigation__link-profile'
+            >
+              Аккаунт
+            </Link>
+          </div>
+          <div
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className='burger-menu'
+          >
+            {isMenuOpen ? (
+              <img
+                className='burger-menu__button burger-menu__button-close'
+                src={closeButton}
+                alt='крестик'
+              />
+            ) : (
+              <img
+                className='burger-menu__button'
+                src={burgerButton}
+                alt='иконка меню'
+              />
+            )}
+          </div>
+        </section>
       )}
     </nav>
   );

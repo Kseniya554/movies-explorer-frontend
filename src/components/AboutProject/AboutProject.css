@@ -125,6 +125,31 @@
   }
 }
 
+@media screen and (max-width: 868px){
+  .about-project__block{
+    width: 86.979%;
+  }
+
+  .about-project__title{
+    width: 86.979%;
+    padding-top: 90px;
+  }
+
+  .about-project__info{
+    max-width: 319px;
+  }
+
+  .about-project__plan{
+    margin-top: 93px;
+    padding-bottom: 90px;
+    width: 86.979%;
+  }
+
+  .about-project__plan-info:first-child {
+    max-width: 140px;
+  }
+}
+
 @media screen and (max-width: 420px) {
   .about-project__block {
     width: 88.75%;
