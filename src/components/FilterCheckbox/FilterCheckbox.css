@@ -1,0 +1,103 @@
+.filter-checkbox {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 0;
+  width: 226px;
+  border-left: 1px solid #424242;
+  height: 40px;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 29px;
+  padding-right: 30px;
+
+}
+
+.filter-checkbox__container {
+  /* background-image: url(../../images/green-tumb__COLOR_tumbler-on-2.svg); */
+  width: 36px;
+  height: 20px;
+  /* background-repeat: no-repeat; */
+}
+
+.filter-checkbox__checkbox {
+  --width: 36px;
+  --height: 20px;
+  --first-color: #2be080;
+  --second-color: #343434;
+  --offset: 2px;
+  --duration: 0.3s;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.filter-checkbox__checkbox:hover {
+  filter: brightness(1.2);
+}
+
+.filter-checkbox__checkbox-click {
+  display: none;
+}
+
+.filter-checkbox__checkbox-click:checked ~ .filter-checkbox__checkbox-name {
+  background-color: var(--second-color);
+}
+
+.filter-checkbox__checkbox-click:checked
+  ~ .filter-checkbox__checkbox-name::before {
+  background-color: var(--first-color);
+  left: calc(var(--width) - var(--height) + var(--offset));
+}
+
+.filter-checkbox__checkbox-name {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--width);
+  background-color: var(--first-color);
+  transition: var(--duration);
+  margin-right: 14px;
+}
+
+.filter-checkbox__checkbox-name::before {
+  content: '';
+  position: absolute;
+  top: var(--offset);
+  left: var(--offset);
+  width: calc(var(--height) - 2 * var(--offset));
+  height: calc(var(--height) - 2 * var(--offset));
+  background-color: var(--second-color);
+  border-radius: 50%;
+  transition: var(--duration);
+}
+
+@media screen and (max-width: 868px) {
+  .filter-checkbox {
+    width: 202px;
+    padding-left: 19px;
+    padding-right: 20px;
+  }
+
+  .filter-checkbox__checkbox-name{
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .filter-checkbox {
+    border: none;
+    padding-top: 45px;
+    font-size: 11px;
+    line-height: 18px;
+  }
+
+  .filter-checkbox__checkbox-name{
+    margin-right: 13px;
+  }
+}
