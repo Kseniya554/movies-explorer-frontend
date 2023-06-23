@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './MoviesCard.css';
 import { Link, useLocation } from 'react-router-dom';
 import saveButton from '../../images/save.svg';
+import okButton from '../../images/save-ok.svg';
 import deleteButton from '../../images/deleteButton.svg';
 
 function MoviesCard({ movie }) {
   // const { image, nameRU, duration } = movie;
   const image = `https://api.nomoreparties.co/${movie.image.url}`;
   const location = useLocation();
+  const [isButtonClick, setIsButtonClick] = useState(false);
   return (
     <article className='movies-card'>
       <div className='movies-card__info'>
@@ -21,12 +23,16 @@ function MoviesCard({ movie }) {
           className='movies-card__button movies-card__button-active'
           name='movies-card__save-button'
           type='button'
-        >
-          {/* <img
-            className='movies-card__icon'
-            src={saveButton}
-            alt='сохранить'
-          ></img> */}
+          onClick={() => setIsButtonClick(!isButtonClick)}
+        > {isButtonClick ? (<img
+        className='movies-card__icon'
+        src={okButton}
+        alt='удалить'
+      ></img>) : (<img
+        className='movies-card__icon'
+        src={saveButton}
+        alt='удалить'
+      ></img>) }
         </button>)}
         {location.pathname === '/saved-movies' && (
         <button

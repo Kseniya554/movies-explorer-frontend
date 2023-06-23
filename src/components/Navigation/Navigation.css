@@ -38,6 +38,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: opacity 1s linear;
+}
+
+.navigation__link:hover{
+  opacity: 70%;
 }
 
 .navigation__link-profile {
@@ -88,6 +93,7 @@
   border: none;
   cursor: pointer;
   text-decoration: none;
+  border-radius: 3px;
 }
 
 .navigation__link-main {
@@ -96,17 +102,22 @@
   align-items: center;
   text-decoration: none;
   height: 74px;
+  transition: opacity 1s linear;
+}
+
+.navigation__link-main:hover{
+  opacity: 70%;
 }
 
 .burger-menu {
   display: none;
 }
 
-.navigation__main-link_disabled {
+.navigation__main-link-disabled {
   display: none;
 }
 
-.navigation__bacground_none{
+.navigation__bacground-none{
   display: flex;
   justify-content: space-between;
   width: 100%;

@@ -46,6 +46,11 @@
   cursor: pointer;
   text-decoration: none;
   color: #ffffff;
+  transition: opacity 1s linear;
+}
+
+.footer__link:hover{
+  opacity: 70%;
 }
 
 @media screen and (max-width: 868px) {

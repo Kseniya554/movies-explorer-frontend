@@ -8,7 +8,7 @@
 .login__header {
   padding-top: 70px;
   margin: 0 auto;
-  width: 396px;
+  max-width: 396px;
 }
 
 .login__logo {

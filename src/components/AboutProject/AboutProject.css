@@ -15,16 +15,17 @@
   letter-spacing: -0.04em;
   color: #ffffff;
   padding-top: 110px;
-  max-width: 1140px;
+  width: 89.0625%;
   padding-bottom: 23px;
   border-bottom: solid 1px#DADADA;
 }
 
 .about-project__block {
   margin: 0 auto;
-  max-width: 1140px;
+  width: 89.0625%;
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .about-project__info {
@@ -58,7 +59,7 @@
 .about-project__plan {
   display: grid;
   grid-template-columns: 20% 80%;
-  max-width: 1140px;
+  width: 89.0625%;
   margin-top: 110px;
   padding-bottom: 110px;
   margin-left: auto;
@@ -166,6 +167,7 @@
 
   .about-project__block {
     flex-direction: column;
+    gap: 0;
   }
 
   .about-project__info {

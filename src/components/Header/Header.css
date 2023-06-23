@@ -11,6 +11,11 @@
     height: 38px;
     margin-top: 18px;
     margin-bottom: 18px;
+    transition: opacity 1s linear;
+}
+
+.header__logo:hover{  
+  opacity: 70%;
 }
 
 @keyframes rotation {

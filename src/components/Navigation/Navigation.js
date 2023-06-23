@@ -24,7 +24,7 @@ function Navigation() {
         </div>
       )}
       {location.pathname === '/movies' && (
-        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground_none' }>
+        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground-none' }>
         <div
           className={
             isMenuOpen
@@ -37,7 +37,7 @@ function Navigation() {
               className={
                 isMenuOpen
                   ? ['navigation__main-link']
-                  : ['navigation__main-link_disabled']
+                  : ['navigation__main-link-disabled']
               }
               to='/'
             >
@@ -81,7 +81,7 @@ function Navigation() {
       </section>
       )}
       {location.pathname === '/saved-movies' && (
-        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground_none' }>
+        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground-none' }>
           <div
             className={
               isMenuOpen
@@ -94,7 +94,7 @@ function Navigation() {
                 className={
                   isMenuOpen
                     ? ['navigation__main-link']
-                    : ['navigation__main-link_disabled']
+                    : ['navigation__main-link-disabled']
                 }
                 to='/'
               >
@@ -138,7 +138,7 @@ function Navigation() {
         </section>
       )}
       {location.pathname === '/profile' && (
-        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground_none' }>
+        <section className={ isMenuOpen ? 'navigation__bacground' : 'navigation__bacground-none' }>
           <div
             className={
               isMenuOpen
@@ -151,7 +151,7 @@ function Navigation() {
                 className={
                   isMenuOpen
                     ? ['navigation__main-link']
-                    : ['navigation__main-link_disabled']
+                    : ['navigation__main-link-disabled']
                 }
                 to='/'
               >

@@ -8,7 +8,7 @@
 .register__header {
     padding-top: 70px;
     margin: 0 auto;
-    width: 396px;
+    max-width: 396px;
 }
 
 .register__logo{
@@ -91,6 +91,11 @@
     cursor: pointer;
     border: none;
     border-radius: 5px;
+    transition: opacity 1s linear;
+}
+
+.register__button:hover{
+  opacity: 70%;
 }
 
 .register__register{
@@ -115,6 +120,11 @@
     margin: 0;
     text-decoration: none;
     color: #4285F4;
+    transition: opacity 1s linear;
+}
+
+.register__register-link:hover{
+  opacity: 70%;
 }
 
 .register__input-error{

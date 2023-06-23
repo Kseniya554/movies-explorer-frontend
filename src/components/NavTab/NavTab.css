@@ -20,6 +20,11 @@
   text-decoration-line: underline;
   color: #ffffff;
   cursor: pointer;
+  transition: opacity 1s linear;
+}
+
+.nav-tab__link:hover {
+  opacity: 70%;
 }
 
 .nav-tab__link:last-child {

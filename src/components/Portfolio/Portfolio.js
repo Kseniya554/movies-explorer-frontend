@@ -1,5 +1,7 @@
 import React from 'react';
 import './Portfolio.css';
+import up from '../../images/up.svg';
+import upMini from '../../images/up320.svg';
 
 function Portfolio() {
   return (
@@ -13,7 +15,8 @@ function Portfolio() {
             rel='noreferrer'
             target='_blank'
           >
-            Статичный сайт<span className='portfolio__span'>&#8599;</span>
+            Статичный сайт
+            <p className='portfolio__span'></p>
           </a>
         </li>
         <li className='portfolio__work'>
@@ -23,7 +26,8 @@ function Portfolio() {
             rel='noreferrer'
             target='_blank'
           >
-            Адаптивный сайт<span className='portfolio__span'>&#8599;</span>
+            Адаптивный сайт
+            <p className='portfolio__span'> </p>
           </a>
         </li>
         <li className='portfolio__work'>
@@ -34,7 +38,7 @@ function Portfolio() {
             target='_blank'
           >
             Одностраничное приложение
-            <span className='portfolio__span'>&#8599;</span>
+            <p className='portfolio__span'> </p>
           </a>
         </li>
       </ul>

@@ -19,7 +19,7 @@
 }
 
 .about-me__info-blocks {
-  max-width: 1140px;
+  width: 89.0625%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -78,12 +78,18 @@
   color: #ffffff;
   text-decoration: none;
   margin-top: auto;
+  transition: opacity 1s linear;
+}
+
+.about-me__github:hover{
+  opacity: 70%;
 }
 
 .about-me__photo {
   width: 270px;
   height: 327px;
   border-radius: 10px;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 868px) {
@@ -149,12 +155,15 @@
     flex-direction: column-reverse;
     justify-content: center;
     padding-bottom: 70px;
+    width: 91.25%;
   }
 
   .about-me__photo {
     width: 292px;
     height: 352px;
     margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .about-me__name {
