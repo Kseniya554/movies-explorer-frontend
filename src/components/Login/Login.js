@@ -1,18 +1,39 @@
 import './Login.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/green-logo.svg';
+import Preloader from '../Preloader/Preloader';
+import validation from '../../utils/Validation';
 
-function Login() {
+function Login({ ...props }) {
+  const { errors, values, isValid, handleChange, resetValidation } =
+    validation();
+
+  useEffect(() => {
+    resetValidation();
+  }, [resetValidation]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onLoginUserData({
+      email: values.email,
+      password: values.password,
+    });
+  }
   return (
     <div className='login'>
       <div className='login__header'>
         <Link to='/'>
-          <img className='login__logo rotation' src={logo} alt='логотип-шестерёнка' />
+          <img
+            className='login__logo rotation'
+            src={logo}
+            alt='логотип-шестерёнка'
+          />
         </Link>
       </div>
       <h2 className='login__title'>Рады видеть!</h2>
-      <form className='login__form' noValidate>
+      <form className='login__form' onSubmit={handleSubmit} noValidate>
+        {props.isLoading ? <Preloader /> : ''}
         <label className='login__label'>
           <p className='login__title-input'>E-mail</p>
           <input
@@ -20,10 +41,18 @@ function Login() {
             name='email'
             id='email'
             type='email'
-            placeholder='pochta@yandex.ru'
+            placeholder='email'
             required
+            value={values.email || ''}
+            onChange={handleChange}
           />
-          <span className='login__input-error'></span>
+          <span
+            className={`login__input-error ${
+              !isValid && errors.email ? 'login__input-error_active' : ''
+            }`}
+          >
+            {errors.email || ''}
+          </span>
         </label>
         <label className='login__label'>
           <p className='login__title-input'>Пароль</p>
@@ -34,10 +63,20 @@ function Login() {
             type='password'
             placeholder=''
             required
+            value={values.password || ''}
+            onChange={handleChange}
           />
-          <span className='login__input-error'></span>
+          <span
+            className={`login__input-error ${
+              !isValid && errors.password ? 'login__input-error_active' : ''
+            }`}
+          >
+            {errors.password || ''}
+          </span>
         </label>
-        <button className='login__button' type='submit'>
+        <button className={`login__button ${
+            !isValid && errors ? 'login__button_disabled' : ''
+          }`} type='submit' disabled={!isValid}>
           Войти
         </button>
         <div className='login__register'>

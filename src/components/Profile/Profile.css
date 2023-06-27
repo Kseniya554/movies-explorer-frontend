@@ -82,6 +82,11 @@
   margin-top: 16px;
 }
 
+.profile__button{
+  border: none;
+  background-color: #202020;
+}
+
 @media screen and (max-width: 520px) {
   .profile__title {
     margin-top: 70px;

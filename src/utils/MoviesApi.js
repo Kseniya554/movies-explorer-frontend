@@ -1,7 +1,7 @@
 class MoviesApi {
-  constructor(option) {
-    this._url = option.baseUrl;
-    this._headers = option._headers;
+  constructor(options) {
+    this._url = options.baseUrl;
+    this._headers = options._headers;
   }
 
   _getResponseData(response) {

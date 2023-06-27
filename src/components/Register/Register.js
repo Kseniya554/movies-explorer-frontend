@@ -1,29 +1,61 @@
 import './Register.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/green-logo.svg';
+import Preloader from '../Preloader/Preloader';
+import validation from '../../utils/Validation';
 
-function Register() {
+function Register({ ...props }) {
+  const { errors, values, isValid, handleChange, resetValidation } =
+    validation();
+
+  useEffect(() => {
+    resetValidation();
+  }, [resetValidation]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onRegisterUserData({
+      email: values.email,
+      password: values.password,
+      name: values.name,
+    });
+  }
   return (
     <div className='register'>
       <div className='register__header'>
         <Link to='/'>
-          <img className='register__logo rotation' src={logo} alt='логотип-шестерёнка' />
+          <img
+            className='register__logo rotation'
+            src={logo}
+            alt='логотип-шестерёнка'
+          />
         </Link>
       </div>
       <h2 className='register__title'>Добро пожаловать!</h2>
-      <form className='register__form' noValidate>
+      <form className='register__form' onSubmit={handleSubmit} noValidate>
+        {props.isLoading ? <Preloader /> : ''}
         <label className='register__label'>
           <p className='register__title-input'>Имя</p>
           <input
             className='register__input'
-            name='email'
-            id='email'
-            type='email'
-            placeholder='Виталий'
+            name='name'
+            id='name'
+            type='text'
+            placeholder='Имя'
             required
+            value={values.name || ''}
+            onChange={handleChange}
+            minLength='2'
+            maxLength='30'
           />
-          <span className='register__input-error'></span>
+          <span
+            className={`register__input-error ${
+              !isValid && errors.name ? 'register__input-error_active' : ''
+            }`}
+          >
+            {errors.name || ''}
+          </span>
         </label>
         <label className='register__label'>
           <p className='register__title-input'>E-mail</p>
@@ -32,10 +64,18 @@ function Register() {
             name='email'
             id='email'
             type='email'
-            placeholder='pochta@yandex.ru'
+            placeholder='email'
             required
+            value={values.email || ''}
+            onChange={handleChange}
           />
-          <span className='register__input-error'></span>
+          <span
+            className={`register__input-error ${
+              !isValid && errors.email ? 'register__input-error_active' : ''
+            }`}
+          >
+            {errors.email || ''}
+          </span>
         </label>
         <label className='register__label'>
           <p className='register__title-input'>Пароль</p>
@@ -46,10 +86,25 @@ function Register() {
             type='password'
             placeholder=''
             required
+            value={values.password || ''}
+            onChange={handleChange}
+            minLength='7'
           />
-          <span className='register__input-error'>Что-то пошло не так...</span>
+          <span
+            className={`register__input-error ${
+              !isValid && errors.password ? 'register__input-error_active' : ''
+            }`}
+          >
+            {errors.password || ''}
+          </span>
         </label>
-        <button className='register__button' type='submit'>
+        <button
+          className={`register__button ${
+            !isValid && errors ? 'register__button_disabled' : ''
+          }`}
+          type='submit'
+          disabled={!isValid}
+        >
           Зарегистрироваться
         </button>
         <div className='register__register'>

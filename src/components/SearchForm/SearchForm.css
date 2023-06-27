@@ -64,7 +64,17 @@
   cursor: pointer;
 }
 
+.search-form__button_disabled {
+  opacity: 70%;
+  cursor: none;
+}
+
 .search-form__input-error {
+  display: none;
+}
+
+.search-form__input-error_active {
+  display: block;
 }
 
 @media screen and (max-width: 868px) {
@@ -87,7 +97,7 @@
     background-color: #2f2f2f;
     border-radius: 10px;
     height: 72px;
-  } 
+  }
 
   .search-form__button {
     margin-right: 19px;
