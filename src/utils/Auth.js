@@ -51,7 +51,7 @@ class Auth {
   
   const auth = new Auth({
     // BASE_URL: 'http://localhost:3000',
-    BASE_URL: 'https://api.best-movies-explorer.nomoredomains.rocks',
+    BASE_URL: 'http://api.best-movies-explorer.nomoredomains.rocks',
     headers: {
       'Content-Type': 'application/json'
     }

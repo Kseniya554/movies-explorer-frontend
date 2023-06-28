@@ -14,6 +14,7 @@ import {
   MOVIES_2_ADD,
   WIDTH_3_MOVIES,
   WIDTH_2_MOVIES,
+  SHORT_FILM
 } from '../../constants/constants';
 
 function Movies({

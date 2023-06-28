@@ -8,4 +8,8 @@ export const MOVIES_2_ADD = 2;
 export const WIDTH_3_MOVIES = 1020;
 export const WIDTH_2_MOVIES = 690;
 
+// export const arrayWith12Cards = movies.slice(0, 12);
+// export const arrayWith8Cards = movies.slice(0, 8);
+// export const arrayWith5Cards = movies.slice(0, 5);
+
 export const SHORT_FILM = 40;

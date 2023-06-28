@@ -20,6 +20,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import imageOk from '../../images/success.svg';
 import imageError from '../../images/Error.svg';
+import moviesMap from '../MoviesMap/MoviesMap';
 
 function App() {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ function App() {
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [initialMovies, setInitialMovies] = useState([]);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -56,9 +58,9 @@ function App() {
     }
   }, [navigate]);
 
-  // useEffect(() => {
-  //   checkLocalStorage();
-  // }, []);
+  useEffect(() => {
+    checkLocalStorage();
+  }, []);
 
   useEffect(() => {
     moviesApi.getAllMovies().then((movies) => {
@@ -168,29 +170,29 @@ function App() {
     setInfoTooltipPopupOpen(false);
   }
 
-  // function handleGetAllMovies() {
-  //   setIsLoading(true);
-  //   moviesApi
-  //     .getAllMovies()
-  //     .then((InitialMovies) => {
-  //       const transformedmovies = transformMovieHandle(InitialMovies);
-  //       localStorage.setItem('allMovies', JSON.stringify(transformedmovies));
-  //       setInitialMovies(transformedmovies);
-  //     })
-  //     .catch((err) => console.log(err))
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }
+  function handleGetAllMovies() {
+    setIsLoading(true);
+    moviesApi
+      .getAllMovies()
+      .then((InitialMovies) => {
+        const transformedmovies = moviesMap(InitialMovies);
+        localStorage.setItem('allMovies', JSON.stringify(transformedmovies));
+        setInitialMovies(transformedmovies);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
 
-  // function checkLocalStorage() {
-  //   const allMovies = localStorage.getItem('allMovies');
-  //   if (allMovies) {
-  //     setInitialMovies(JSON.parse(allMovies));
-  //   } else {
-  //     handleGetAllMovies();
-  //   }
-  // }
+  function checkLocalStorage() {
+    const allMovies = localStorage.getItem('allMovies');
+    if (allMovies) {
+      setInitialMovies(JSON.parse(allMovies));
+    } else {
+      handleGetAllMovies();
+    }
+  }
 
   function handleSaveMovie(movie) {
     setIsLoading(true);
@@ -253,17 +255,33 @@ function App() {
           ) : (
             <Route path='/signin' element={<Navigate to='/' />} />
           )}
-          <Route
-            path='/profile'
-            element={<Profile onUpdateUserInfo={handleUpdateUser} signOut={handleSignOut}
-            isLoading={isLoading}/>}
-          ></Route>
+          {loggedIn ? (
+            <Route
+              path='/profile'
+              element={
+                <Profile
+                  onUpdateUserInfo={handleUpdateUser}
+                  signOut={handleSignOut}
+                  isLoading={isLoading}
+                />
+              }
+            ></Route>
+          ) : (
+            <Route path='/profile' element={<Navigate to='/' />} />
+          )}
+
           <Route path='/' element={<Main />}></Route>
           <Route
             path='/movies'
             // element={<Movies />}
             element={
-              <Movies loggedIn={loggedIn} movies={movies} isOwner={false} />
+              <Movies
+                // movies={movies} isOwner={false}
+                initialMovies={initialMovies}
+                onSave={handleSaveMovie}
+                onDelete={handleDeleteMovie}
+                savedMovies={savedMovies}
+              />
             }
           ></Route>
           <Route

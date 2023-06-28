@@ -17,10 +17,9 @@ function Profile({ onUpdateUserInfo, signOut, isLoading, errorMessage }) {
   }, [currentUser]);
 
   useEffect(() => {
-    let isMatch =
-      currentUser.name !== values.name || currentUser.email !== values.email;
-    setIsDisabled(isMatch);
-  }, [values, currentUser, isValid]);
+    let isActiveButton = (currentUser.name !== values.name) || (currentUser.email !== values.email);
+    setIsDisabled(isActiveButton);
+  }, [values, currentUser, isValid])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,9 +35,11 @@ function Profile({ onUpdateUserInfo, signOut, isLoading, errorMessage }) {
           <input
             className='profile__input'
             type='text'
-            placeholder='Имя'
-            requiredvalue={values.name || ''}
+            placeholder={currentUser.name}
+            value={values.name || ''}
             onChange={handleChange}
+            minLength='2'
+            name='name'
           />
         </label>
         <label className='profile__label'>
@@ -46,8 +47,9 @@ function Profile({ onUpdateUserInfo, signOut, isLoading, errorMessage }) {
           <input
             className='profile__input'
             type='email'
-            placeholder='email'
+            placeholder={currentUser.email}
             required
+            name='email'
             value={values.email || ''}
             onChange={handleChange}
           />
@@ -55,7 +57,7 @@ function Profile({ onUpdateUserInfo, signOut, isLoading, errorMessage }) {
       </fieldset>
       <div className='profile__links'>
         <button
-          className='profile__link profile__button'
+          className={`profile__link profile__button ${!isValid && errors ? 'profile__button_disabled' : ''}`}
           disabled={!isValid || !isDisabled}
           type='submit'
         >

@@ -82,7 +82,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'https://api.best-movies-explorer.nomoredomains.rocks',
+  baseUrl: 'http://api.best-movies-explorer.nomoredomains.rocks',
   headers: {
     'Content-Type': 'application/json',
   },

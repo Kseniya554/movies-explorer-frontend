@@ -85,6 +85,12 @@
 .profile__button{
   border: none;
   background-color: #202020;
+  cursor: pointer;
+}
+
+.profile__button_disabled{
+  opacity: 0.7;
+  cursor: auto;
 }
 
 @media screen and (max-width: 520px) {

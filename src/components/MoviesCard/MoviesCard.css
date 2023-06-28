@@ -56,21 +56,14 @@
   background-size: cover;
   padding: 0;
   background-color: #313131;
-  /* 
-  font-family: 'Inter', 'Arial', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 11px;
-  text-align: center;
-  color: #ffffff; */
+  cursor: pointer;
 }
 
 .movies-card__button-delete{
   background-image: url(../../images/deleteButton.svg);
 }
 
-.movies-card__button-active:active {
+.movies-card__button_active {
   background-image: url(../../images/save-ok.svg);
 }
 
