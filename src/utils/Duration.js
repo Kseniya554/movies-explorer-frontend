@@ -1,10 +1,5 @@
-export default function durationMovie(durationValue) {
-    const hours = Math.floor(durationValue / 60);
-    const minutes = durationValue % 60;
-  
-    if(hours === 0) {
-      return (`${minutes}м`);
-    } else{
-      return (`${hours}ч ${minutes}м`);
-    }
-  }
+export default function durationMovie(time) {
+  const hours = Math.trunc(time / 60);
+  const minutes = time % 60;
+  return hours + 'ч ' + minutes + 'м';
+}

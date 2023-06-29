@@ -20,15 +20,15 @@ function MoviesCardList({
   return (
     <>
       <section className='movies-section'>
-        {arrayWith12Cards.map((cardMovie) => (
+        {/* {arrayWith12Cards.map((cardMovie) => ( */}
           <MoviesCard
-            movie={cardMovie}
-            key={cardMovie.id}
+            movie={arrayWith12Cards}
+            key={arrayWith12Cards.movieId}
             savedMovies={savedMovies}
             onSave={onSave}
             onDelete={onDelete}
           />
-        ))}
+        {/* ))} */}
         {/* {isLoading ? (
           <Preloader />
         ) : (

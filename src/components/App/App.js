@@ -59,13 +59,12 @@ function App() {
   }, [navigate]);
 
   useEffect(() => {
-    checkLocalStorage();
+    getLocalStorage();
   }, []);
 
   useEffect(() => {
     moviesApi.getAllMovies().then((movies) => {
       setMovies(movies);
-      console.log(movies);
     });
   }, []);
 
@@ -185,7 +184,7 @@ function App() {
       });
   }
 
-  function checkLocalStorage() {
+  function getLocalStorage() {
     const allMovies = localStorage.getItem('allMovies');
     if (allMovies) {
       setInitialMovies(JSON.parse(allMovies));

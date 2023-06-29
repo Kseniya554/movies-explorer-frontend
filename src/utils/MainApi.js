@@ -54,7 +54,7 @@ class MainApi {
         description: data.description,
         image: data.image,
         trailerLink: data.trailerLink,
-        thumbnail: data.thumbnail,
+        // thumbnail: data.thumbnail,
         movieId: data.movieId,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
