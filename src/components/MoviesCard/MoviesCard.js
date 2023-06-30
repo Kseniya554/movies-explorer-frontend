@@ -1,25 +1,30 @@
 import React from 'react';
 import './MoviesCard.css';
 import { Link, useLocation } from 'react-router-dom';
-import saveButton from '../../images/save.svg';
-import deleteButton from '../../images/deleteButton.svg';
+// import saveButton from '../../images/save.svg';
+// import deleteButton from '../../images/deleteButton.svg';
 import durationMovie from '../../utils/Duration';
 
-function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
+function MoviesCard({ movie, isSavedMovie, onSave, onDelete }) {
   const { nameRU, imageUrl, duration } = movie;
-  // const convertedDuration = durationMovie();
+  const convertedDuration = durationMovie();
   // const image = `https://api.nomoreparties.co/${movie.image.url}`;
   const location = useLocation();
 
   return (
     <article className='movies-card'>
       <div className='movies-card__info'>
-        <figcaption className='movies-card__figcaption'>
-          <h3 className='movies-card__title'>{durationMovie(movie.nameRU)}</h3>
+        <figcaption>
+          <h3 className='movies-card__title'>{nameRU}</h3>
+          <p className='movies-card__duration'>{convertedDuration}</p>
         </figcaption>
         <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
-          <img className='movies-card__image' src={imageUrl} alt={movie.nameRU} />
-        </a> 
+          <img
+            className='movies-card__image'
+            src={imageUrl}
+            alt={nameRU}
+          />
+        </a>
 
         {location.pathname === '/movies' && (
           <button
@@ -47,7 +52,8 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
             className='movies-card__button movies-card__button-delete'
             name='movies-card__delete-button'
             type='button'
-            onClick={() => { isSavedMovie
+            onClick={() => {
+              isSavedMovie
                 ? onDelete(movie._id ? movie._id : likedId)
                 : onSave(movie);
             }}

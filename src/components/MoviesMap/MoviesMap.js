@@ -1,19 +1,16 @@
-export default function moviesMap(movie) {
-  console.log(movie);
-  const imageUrl = `https://api.nomoreparties.co${movie.image.url}`;
-  // const thumbnail = `https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`;
-  return movie.map((movie) => ({
+export default function moviesMap(movies) {
+  return movies.map((movie) => ({
     country: movie.country,
     director: movie.director,
     duration: movie.duration,
     year: movie.year,
     description: movie.description,
-    image: { imageUrl },
+    image: { imageUrl: `https://api.nomoreparties.co${movie.image.url}` },
     trailerLink: movie.trailerLink,
-    // thumbnail: {thumbnail},
+    thumbnail: { thumbnailUrl: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`},
     id: movie.id,
     nameRU: movie.nameRU,
     nameEN: movie.nameEN,
     key: movie.movieId,
-  }));
+  }))
 }

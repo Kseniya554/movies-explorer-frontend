@@ -18,9 +18,8 @@ import {
 } from '../../constants/constants';
 
 function Movies({
-  movies,
-  isOwner,
-  loggedIn,
+  // movies,
+  // isOwner,
   initialMovies,
   onSave,
   onDelete,
