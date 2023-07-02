@@ -14,7 +14,7 @@ import {
   MOVIES_2_ADD,
   WIDTH_3_MOVIES,
   WIDTH_2_MOVIES,
-  SHORT_FILM
+  SHORT_FILM,
 } from '../../constants/constants';
 
 function Movies({
@@ -41,6 +41,7 @@ function Movies({
     searchMoviesHandler();
     filterShotMoviesHandler();
   }, [searchRequest, isCheckboxActive]);
+  // console.log(searchRequest)
 
   useEffect(() => {
     checkLastRequest();
@@ -54,8 +55,8 @@ function Movies({
     setShotMovies(handleFilter(foundMovies));
   }
 
-  function handleFilter(moviesArray) {
-    return moviesArray.filter((movie) => {
+  function handleFilter(movies) {
+    return movies.filter((movie) => {
       return movie.duration <= SHORT_FILM;
     });
   }
@@ -84,8 +85,8 @@ function Movies({
     }
   }
 
-  function handleSearch(moviesArray, keyword) {
-    return moviesArray.filter((movie) => {
+  function handleSearch(movies, keyword) {
+    return movies.filter((movie) => {
       const a = keyword.toLowerCase().trim();
       return (
         movie.nameRU.toLowerCase().indexOf(a) !== -1 ||
@@ -126,31 +127,31 @@ function Movies({
     setInfoTooltipPopupOpen(false);
   }
 
-  function resize() {
-    if (width >= 1280) {
-      setMoviesToInitialRender({
-        current: MOVIES_12,
-        next: MOVIES_3_ADD,
-      });
-    } else if (width < 480) {
-      setMoviesToInitialRender({
-        current: MOVIES_5,
-        next: MOVIES_2_ADD,
-      });
-    } else {
-      setMoviesToInitialRender({
-        current: MOVIES_8,
-        next: MOVIES_2_ADD,
-      });
-    }
-  }
+  // function resize() {
+  //   if (width >= 1280) {
+  //     setMoviesToInitialRender({
+  //       current: MOVIES_12,
+  //       next: MOVIES_3_ADD,
+  //     });
+  //   } else if (width < 480) {
+  //     setMoviesToInitialRender({
+  //       current: MOVIES_5,
+  //       next: MOVIES_2_ADD,
+  //     });
+  //   } else {
+  //     setMoviesToInitialRender({
+  //       current: MOVIES_8,
+  //       next: MOVIES_2_ADD,
+  //     });
+  //   }
+  // }
 
-  function handleMoreClick() {
-    setMoviesToInitialRender({
-      current: moviesToInitialRender.current + moviesToInitialRender.next,
-      next: moviesToInitialRender.next,
-    });
-  }
+  // function handleMoreClick() {
+  //   setMoviesToInitialRender({
+  //     current: moviesToInitialRender.current + moviesToInitialRender.next,
+  //     next: moviesToInitialRender.next,
+  //   });
+  // }
 
   return (
     <section className='movies'>
@@ -166,8 +167,8 @@ function Movies({
         // movies={movies} isOwner={isOwner}
         movies={isCheckboxActive ? shotMovies : foundMovies}
         isLoading={isLoading}
-        onClick={handleMoreClick}
-        limit={moviesToInitialRender.current}
+        // onClick={handleMoreClick}
+        // limit={moviesToInitialRender.current}
         isSavedMovies={false}
         onSave={onSave}
         onDelete={onDelete}

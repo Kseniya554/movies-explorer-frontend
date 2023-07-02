@@ -74,9 +74,13 @@ function Login({ ...props }) {
             {errors.password || ''}
           </span>
         </label>
-        <button className={`login__button ${
+        <button
+          className={`login__button ${
             !isValid && errors ? 'login__button_disabled' : ''
-          }`} type='submit' disabled={!isValid}>
+          }`}
+          type='submit'
+          disabled={!isValid}
+        >
           Войти
         </button>
         <div className='login__register'>

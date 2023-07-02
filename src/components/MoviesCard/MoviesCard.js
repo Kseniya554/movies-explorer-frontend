@@ -5,10 +5,10 @@ import { Link, useLocation } from 'react-router-dom';
 // import deleteButton from '../../images/deleteButton.svg';
 import durationMovie from '../../utils/Duration';
 
-function MoviesCard({ movie, isSavedMovie, onSave, onDelete }) {
-  const { nameRU, imageUrl, duration } = movie;
-  const convertedDuration = durationMovie();
-  // const image = `https://api.nomoreparties.co/${movie.image.url}`;
+function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovie }) {
+  const { nameRU,  duration } = movie;
+  // const convertedDuration = durationMovie();
+  const image = `https://api.nomoreparties.co${movie.image.url}`;
   const location = useLocation();
 
   return (
@@ -16,12 +16,12 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete }) {
       <div className='movies-card__info'>
         <figcaption>
           <h3 className='movies-card__title'>{nameRU}</h3>
-          <p className='movies-card__duration'>{convertedDuration}</p>
+          <p className='movies-card__duration'>{movie.duration}</p>
         </figcaption>
         <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
           <img
             className='movies-card__image'
-            src={imageUrl}
+            src={image}
             alt={nameRU}
           />
         </a>

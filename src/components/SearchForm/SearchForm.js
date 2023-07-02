@@ -10,8 +10,11 @@ function SearchForm({
   searchRequest,
   checkboxState,
 }) {
-  const { errors, values, isValid, handleChange, resetValidation } = validation();
+  const { errors, values, isValid, handleChange, resetValidation } =
+    validation();
   const { movietitle } = values;
+  // console.log(values);
+
 
   useEffect(() => {
     resetValidation({ movietitle: searchRequest });
@@ -21,6 +24,8 @@ function SearchForm({
     e.preventDefault();
     handleSearch(movietitle);
   }
+  // console.log(movietitle);
+  // console.log(handleSearch)
   return (
     <section className='search-form'>
       <form
@@ -37,7 +42,7 @@ function SearchForm({
             minLength='1'
             onChange={handleChange}
             value={values.movietitle || ''}
-            name='movietitle' //Поменять
+            name='movietitle'
           />
           {/* <span
             className={`search-form__input-error ${

@@ -15,20 +15,25 @@ function MoviesCardList({
   onClick,
   limit,
 }) {
-  const arrayWith12Cards = movies.slice(0, 12);
+  // const arrayWithCards = movies.slice();
   const location = useLocation();
   return (
     <>
       <section className='movies-section'>
-        {/* {arrayWith12Cards.map((cardMovie) => ( */}
-          <MoviesCard
-            movie={arrayWith12Cards}
-            key={arrayWith12Cards.movieId}
-            savedMovies={savedMovies}
-            onSave={onSave}
-            onDelete={onDelete}
-          />
-        {/* ))} */}
+        {movies?.map((movie, index) => {
+          return (
+            // index < limit && 
+            <MoviesCard
+              isSavedMovies={isSavedMovies}
+              // movie={arrayWith12Cards}
+              movie={movie}
+              key={movie.movieId}
+              savedMovies={savedMovies}
+              onSave={onSave}
+              onDelete={onDelete}
+            /> 
+          ); 
+        })}
         {/* {isLoading ? (
           <Preloader />
         ) : (
