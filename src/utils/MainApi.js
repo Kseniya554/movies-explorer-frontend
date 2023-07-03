@@ -55,15 +55,15 @@ class MainApi {
         image: data.image,
         trailerLink: data.trailerLink,
         thumbnail: data.thumbnail,
-        movieId: data.movieId,
+        id: data.id,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
       }),
     }).then(this._getResponseData);
   }
 
-  deleteMovie(movieId) {
-    return fetch(`${this._url}/movies/${movieId}`, {
+  deleteMovie(id) {
+    return fetch(`${this._url}/movies/${id}`, {
       method: 'DELETE',
       headers: this._headers,
     }).then(this._getResponseData);

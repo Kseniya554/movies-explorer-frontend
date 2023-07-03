@@ -15,47 +15,39 @@ function MoviesCardList({
   onClick,
   limit,
 }) {
-  // const arrayWithCards = movies.slice();
   const location = useLocation();
+    // Скрытие кнопки "Ещё" после отображения всех карточек
+  // const cards = document.querySelectorAll('.card');
+  const moreButton = document.querySelector('.dop__button');
+
+  function hideMoreButton() {
+  if (movies.length === 0) {
+  moreButton.style.display = 'none';
+  }
+  }
   return (
     <>
       <section className='movies-section'>
-        {movies?.map((movie, index) => {
-          return (
-            // index < limit && 
-            <MoviesCard
-              isSavedMovies={isSavedMovies}
-              // movie={arrayWith12Cards}
-              movie={movie}
-              key={movie.movieId}
-              savedMovies={savedMovies}
-              onSave={onSave}
-              onDelete={onDelete}
-            /> 
-          ); 
-        })}
-        {/* {isLoading ? (
+        {isLoading ? (
           <Preloader />
         ) : (
-          movies?.map((movie, index, array) => {
+          movies?.map((movie) => {
             return (
-              index < limit && (
-                <MoviesCard
-                  isSavedMovies={isSavedMovies}
-                  onSave={onSave}
-                  onDelete={onDelete}
-                  movie={movie}
-                  savedMovies={savedMovies}
-                  key={movie.movieId}
-                />
-              )
+              <MoviesCard
+                isSavedMovies={isSavedMovies}
+                movie={movie}
+                key={movie.id}
+                savedMovies={savedMovies}
+                onSave={onSave}
+                onDelete={onDelete}
+              />
             );
           })
-        )} */}
+        )}
       </section>
-      {!isOwner && movies.length > limit && (
+      {(movies.length > limit) && (
         <section className='dop'>
-          <button className='dop__button' onClick={onClick} type='button'>
+          <button className='dop__button' onClick={onClick} type='button' hideMoreButton>
             Ещё
           </button>
         </section>

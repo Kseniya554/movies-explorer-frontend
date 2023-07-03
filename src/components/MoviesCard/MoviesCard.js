@@ -6,24 +6,23 @@ import { Link, useLocation } from 'react-router-dom';
 import durationMovie from '../../utils/Duration';
 
 function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovie }) {
-  const { nameRU,  duration } = movie;
-  // const convertedDuration = durationMovie();
-  const image = `https://api.nomoreparties.co${movie.image.url}`;
+  const { nameRU, image,  duration } = movie;
+  const convertedDuration = durationMovie(duration);
   const location = useLocation();
 
   return (
     <article className='movies-card'>
       <div className='movies-card__info'>
-        <figcaption>
+        <figcaption className='movies-card__figcaption'>
           <h3 className='movies-card__title'>{nameRU}</h3>
-          <p className='movies-card__duration'>{movie.duration}</p>
+          <p className='movies-card__duration'>{convertedDuration}</p>
         </figcaption>
-        <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
+        <a className='movies-card__link' href={movie.trailerLink} target='_blank' rel='noreferrer'>
           <img
             className='movies-card__image'
             src={image}
             alt={nameRU}
-          />
+          /> 
         </a>
 
         {location.pathname === '/movies' && (

@@ -75,7 +75,7 @@
   transition: var(--duration);
 }
 
-@media screen and (max-width: 868px) {
+@media screen and (max-width: 1020px) {
   .filter-checkbox {
     width: 202px;
     padding-left: 19px;

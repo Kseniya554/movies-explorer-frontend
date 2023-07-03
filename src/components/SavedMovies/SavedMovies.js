@@ -7,6 +7,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
 function SavedMovies({ movies, isLoading }) {
+  // console.log(movies)
   return (
     <section className='saved-movies'>
       <Header />

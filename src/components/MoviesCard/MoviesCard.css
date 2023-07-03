@@ -8,6 +8,9 @@
 .movies-card__image {
   max-width: 360px;
   height: 200px;
+  display: flex;
+  align-self: center;
+  margin: 0 auto;
 }
 
 .movies-card__info {
@@ -65,6 +68,10 @@
 
 .movies-card__button_active {
   background-image: url(../../images/save-ok.svg);
+}
+
+.movies-card__link{
+  cursor: pointer;
 }
 
 @media screen and (max-width: 868px) {
