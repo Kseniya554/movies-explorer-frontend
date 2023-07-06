@@ -18,21 +18,23 @@ function MoviesCardList({
   const location = useLocation();
     // Скрытие кнопки "Ещё" после отображения всех карточек
   // const cards = document.querySelectorAll('.card');
-  const moreButton = document.querySelector('.dop__button');
+  // const moreButton = document.querySelector('.dop__button');
 
-  function hideMoreButton() {
-  if (movies.length === 0) {
-  moreButton.style.display = 'none';
-  }
-  }
+  // function hideMoreButton() {
+  // if (movies.length === 0) {
+  // moreButton.style.display = 'none';
+  // }
+  // }
   return (
     <>
       <section className='movies-section'>
         {isLoading ? (
           <Preloader />
         ) : (
-          movies?.map((movie) => {
+          movies?.map((movie, length, array) => {
+            // console.log(movies)
             return (
+              length < limit &&
               <MoviesCard
                 isSavedMovies={isSavedMovies}
                 movie={movie}
@@ -47,11 +49,11 @@ function MoviesCardList({
       </section>
       {(movies.length > limit) && (
         <section className='dop'>
-          <button className='dop__button' onClick={onClick} type='button' hideMoreButton>
+          <button className='dop__button' onClick={onClick} type='button'>
             Ещё
-          </button>
+          </button> 
         </section>
-      )}
+      )}console.log('dop__button')
       {location.pathname === '/saved-movies' && (
         <div className='dop-block'></div>
       )}

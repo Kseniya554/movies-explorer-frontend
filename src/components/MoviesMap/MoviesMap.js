@@ -9,9 +9,9 @@ export default function moviesMap(movies) {
     image: `https://api.nomoreparties.co${movie.image.url}`,
     trailerLink: movie.trailerLink,
     thumbnail:  `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
-    id: movie.id,
+    movieId: movie.id,
     nameRU: movie.nameRU,
     nameEN: movie.nameEN,
-    key: movie.id,
+    key: movie._id,
   }))
 }

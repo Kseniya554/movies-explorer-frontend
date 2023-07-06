@@ -34,10 +34,10 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovie }) {
             }
             name='movies-card__save-button'
             type='button'
-            onClick={onSave}
-            // onClick={() => {
-            //   isLiked || isSavedMovies ? onDelete(movie._id ? movie._id : likedId) : onSave(movie);
-            // }}
+            // onClick={onSave}
+            onClick={() => {
+              isSavedMovie ? onDelete(movie._id ? movie._id : savedMovie) : onSave(movie);
+            }}
           >
             {/* <img
             className='movies-card__icon'

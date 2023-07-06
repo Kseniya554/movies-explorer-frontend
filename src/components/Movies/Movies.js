@@ -16,6 +16,7 @@ import {
   WIDTH_2_MOVIES,
   SHORT_FILM,
 } from '../../constants/constants';
+import useWindowWidth from '../../utils/Width';
 
 function Movies({
   // movies,
@@ -36,6 +37,7 @@ function Movies({
     current: 0,
     next: 0,
   });
+  const {width} = useWindowWidth();
 
   useEffect(() => {
     searchMoviesHandler();
@@ -47,9 +49,9 @@ function Movies({
     checkLastRequest();
   }, []);
 
-  // useEffect(() => {
-  //   resize()
-  // }, [width]);
+  useEffect(() => {
+    resize()
+  }, [width]);
 
   function filterShotMoviesHandler() {
     setShotMovies(handleFilter(foundMovies));
@@ -127,31 +129,31 @@ function Movies({
     setInfoTooltipPopupOpen(false);
   }
 
-  // function resize() {
-  //   if (width >= 1280) {
-  //     setMoviesToInitialRender({
-  //       current: MOVIES_12,
-  //       next: MOVIES_3_ADD,
-  //     });
-  //   } else if (width < 480) {
-  //     setMoviesToInitialRender({
-  //       current: MOVIES_5,
-  //       next: MOVIES_2_ADD,
-  //     });
-  //   } else {
-  //     setMoviesToInitialRender({
-  //       current: MOVIES_8,
-  //       next: MOVIES_2_ADD,
-  //     });
-  //   }
-  // }
+  function resize() {
+    if (width >= WIDTH_3_MOVIES) {
+      setMoviesToInitialRender({
+        current: MOVIES_12,
+        next: MOVIES_3_ADD,
+      });
+    } else if (width < WIDTH_2_MOVIES) {
+      setMoviesToInitialRender({
+        current: MOVIES_5,
+        next: MOVIES_2_ADD,
+      });
+    } else {
+      setMoviesToInitialRender({
+        current: MOVIES_8,
+        next: MOVIES_2_ADD,
+      });
+    }
+  }
 
-  // function handleMoreClick() {
-  //   setMoviesToInitialRender({
-  //     current: moviesToInitialRender.current + moviesToInitialRender.next,
-  //     next: moviesToInitialRender.next,
-  //   });
-  // }
+  function handleMoreClick() {
+    setMoviesToInitialRender({
+      current: moviesToInitialRender.current + moviesToInitialRender.next,
+      next: moviesToInitialRender.next,
+    });
+  }
 
   return (
     <section className='movies'>
@@ -167,8 +169,8 @@ function Movies({
         // movies={movies} isOwner={isOwner}
         movies={isCheckboxActive ? shotMovies : foundMovies}
         isLoading={isLoading}
-        // onClick={handleMoreClick}
-        // limit={moviesToInitialRender.current}
+        onClick={handleMoreClick}
+        limit={moviesToInitialRender.current}
         isSavedMovies={false}
         onSave={onSave}
         onDelete={onDelete}

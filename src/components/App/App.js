@@ -270,7 +270,7 @@ function App() {
           )}
 
           <Route path='/' element={<Main />}></Route>
-          
+
           <Route
             path='/movies'
             // element={<Movies />}
@@ -286,7 +286,15 @@ function App() {
           ></Route>
           <Route
             path='/saved-movies'
-            element={<SavedMovies movies={movies} isOwner={true} />}
+            element={
+              <SavedMovies
+                component={SavedMovies}
+                onSave={handleSaveMovie}
+                onDelete={handleDeleteMovie}
+                savedMovies={savedMovies}
+                initialMovies={savedMovies}
+              />
+            }
           ></Route>
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
