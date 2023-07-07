@@ -171,7 +171,7 @@ function Movies({
         isLoading={isLoading}
         onClick={handleMoreClick}
         limit={moviesToInitialRender.current}
-        isSavedMovies={false}
+        isSavedMovie={false}
         onSave={onSave}
         onDelete={onDelete}
         savedMovies={savedMovies}

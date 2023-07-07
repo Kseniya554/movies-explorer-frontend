@@ -139,7 +139,7 @@ function SavedMovies({ movie, initialMovies, onSave, onDelete, savedMovies }) {
       ) : (
         // <MoviesCardList movies={movies.slice()} isOwner={isOwner} />
         <MoviesCardList
-          movies={
+          movies={ 
             !searchRequest
               ? isCheckboxActive
                 ? shotMovies
@@ -152,7 +152,7 @@ function SavedMovies({ movie, initialMovies, onSave, onDelete, savedMovies }) {
           // buttonType='delete'
           onClick={handleMoreClick}
           limit={moviesToInitialRender.current}
-          isSavedMovies={true}
+          isSavedMovie={true}
           onSave={onSave}
           onDelete={onDelete}
           savedMovies={savedMovies}

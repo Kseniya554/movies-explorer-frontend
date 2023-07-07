@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 function MoviesCardList({
   movies,
   isOwner,
-  isSavedMovies,
+  isSavedMovie,
   onSave,
   onDelete,
   savedMovies,
@@ -36,9 +36,9 @@ function MoviesCardList({
             return (
               length < limit &&
               <MoviesCard
-                isSavedMovies={isSavedMovies}
+                isSavedMovie={isSavedMovie}
                 movie={movie}
-                key={movie.id}
+                key={movie.movieId}
                 savedMovies={savedMovies}
                 onSave={onSave}
                 onDelete={onDelete}

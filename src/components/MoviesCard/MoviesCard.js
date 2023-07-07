@@ -5,10 +5,19 @@ import { Link, useLocation } from 'react-router-dom';
 // import deleteButton from '../../images/deleteButton.svg';
 import durationMovie from '../../utils/Duration';
 
-function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovie }) {
+function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
   const { nameRU, image,  duration } = movie;
   const convertedDuration = durationMovie(duration);
   const location = useLocation();
+
+  let isClick = false;
+  let clickId;
+  isClick = savedMovies.some((savedMovie) => {
+    if (savedMovie.movieId === movie.id) {
+      clickId = savedMovie.id;
+      return true;
+    }
+  })
 
   return (
     <article className='movies-card'>
@@ -27,16 +36,12 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovie }) {
 
         {location.pathname === '/movies' && (
           <button
-            className={
-              isSavedMovie
-                ? 'movies-card__button_active'
-                : 'movies-card__button'
-            }
+            className={ `movies-card__button ${isSavedMovie ? '_active' : ''}`}
             name='movies-card__save-button'
             type='button'
             // onClick={onSave}
             onClick={() => {
-              isSavedMovie ? onDelete(movie._id ? movie._id : savedMovie) : onSave(movie);
+              isClick || isSavedMovie ? onDelete(movie.id ? movie.id : savedMovies) : onSave(movie);
             }}
           >
             {/* <img
@@ -52,9 +57,7 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovie }) {
             name='movies-card__delete-button'
             type='button'
             onClick={() => {
-              isSavedMovie
-                ? onDelete(movie._id ? movie._id : likedId)
-                : onSave(movie);
+              isSavedMovie = onDelete(movie._id);
             }}
           >
             {/* <img

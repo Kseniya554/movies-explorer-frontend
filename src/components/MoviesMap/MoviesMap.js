@@ -12,6 +12,6 @@ export default function moviesMap(movies) {
     movieId: movie.id,
     nameRU: movie.nameRU,
     nameEN: movie.nameEN,
-    key: movie._id,
+    key: movie.id,
   }))
 }
