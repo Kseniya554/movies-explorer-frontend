@@ -271,31 +271,41 @@ function App() {
 
           <Route path='/' element={<Main />}></Route>
 
-          <Route
-            path='/movies'
-            // element={<Movies />}
-            element={
-              <Movies
-                // movies={movies} isOwner={false}
-                initialMovies={initialMovies}
-                onSave={handleSaveMovie}
-                onDelete={handleDeleteMovie}
-                savedMovies={savedMovies}
-              />
-            }
-          ></Route>
-          <Route
-            path='/saved-movies'
-            element={
-              <SavedMovies
-                component={SavedMovies}
-                onSave={handleSaveMovie}
-                onDelete={handleDeleteMovie}
-                savedMovies={savedMovies}
-                initialMovies={savedMovies}
-              />
-            }
-          ></Route>
+          {loggedIn ? (
+            <Route
+              path='/movies'
+              // element={<Movies />}
+              element={
+                <Movies
+                  // movies={movies} isOwner={false}
+                  initialMovies={initialMovies}
+                  onSave={handleSaveMovie}
+                  onDelete={handleDeleteMovie}
+                  savedMovies={savedMovies}
+                />
+              }
+            ></Route>
+          ) : (
+            <Route path='/movies' element={<Navigate to='/' />} />
+          )}
+
+          {loggedIn ? (
+            <Route
+              path='/saved-movies'
+              element={
+                <SavedMovies
+                  component={SavedMovies}
+                  onSave={handleSaveMovie}
+                  onDelete={handleDeleteMovie}
+                  savedMovies={savedMovies}
+                  initialMovies={savedMovies}
+                />
+              }
+            ></Route>
+          ) : (
+            <Route path='/saved-movies' element={<Navigate to='/' />} />
+          )}
+
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </CurrentUserContext.Provider>

@@ -124,7 +124,7 @@ function SavedMovies({ movie, initialMovies, onSave, onDelete, savedMovies }) {
       next: moviesToInitialRender.next,
     });
   }
-// console.log(key);
+console.log(initialMovies);
   return (
     <section className='saved-movies'>
       <Header />

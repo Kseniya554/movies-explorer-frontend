@@ -13,8 +13,8 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
   let isClick = false;
   let clickId;
   isClick = savedMovies.some((savedMovie) => {
-    if (savedMovie.movieId === movie.id) {
-      clickId = savedMovie.id;
+    if (savedMovie.movieId === movie.movieId) {
+      clickId = savedMovie._id;
       return true;
     }
   })
@@ -36,12 +36,12 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
 
         {location.pathname === '/movies' && (
           <button
-            className={ `movies-card__button ${isSavedMovie ? '_active' : ''}`}
+            className={ `movies-card__button ${isSavedMovie ? 'movies-card__button_active' : 'movies-card__button'}`}
             name='movies-card__save-button'
             type='button'
             // onClick={onSave}
             onClick={() => {
-              isClick || isSavedMovie ? onDelete(movie.id ? movie.id : savedMovies) : onSave(movie);
+              isClick || isSavedMovie ? onDelete(movie._id ? movie._id : clickId) : onSave(movie);
             }}
           >
             {/* <img
@@ -55,7 +55,7 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
           <button
             className='movies-card__button movies-card__button-delete'
             name='movies-card__delete-button'
-            type='button'
+            type='delete'
             onClick={() => {
               isSavedMovie = onDelete(movie._id);
             }}
