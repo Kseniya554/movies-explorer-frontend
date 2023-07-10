@@ -8,7 +8,7 @@ function SearchForm({
   handleSearch,
   handleCheckboxClick,
   searchRequest,
-  checkboxState,
+  checkbox,
 }) {
   const { errors, values, isValid, handleChange, resetValidation } =
   useValidation();
@@ -69,7 +69,7 @@ function SearchForm({
         </div>
         <FilterCheckbox
           onClick={handleCheckboxClick}
-          checkboxState={checkboxState}
+          checkbox={checkbox}
         />
       </form>
     </section>

@@ -35,7 +35,6 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
     searchMoviesHandler();
     filterShotMoviesHandler();
   }, [searchRequest, isCheckboxActive]);
-  // console.log(searchRequest)
 
   useEffect(() => {
     checkLastRequest();
@@ -66,9 +65,9 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
           setInfoTooltipPopupOpen(true);
         } else {
           setRequestToLocalStorage('lastRequest', searchRequest);
-          setRequestToLocalStorage('lastRequestedMovies', moviesToRender);
+          setRequestToLocalStorage('moviesLastRequest', moviesToRender);
           setFoundMovies(moviesToRender);
-          setRequestToLocalStorage('checkboxState', isCheckboxActive);
+          setRequestToLocalStorage('checkbox', isCheckboxActive);
         }
       }
       return;
@@ -94,17 +93,17 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
   }
 
   function checkLastRequest() {
-    const lastMovies = localStorage.getItem('lastRequestedMovies');
+    const lastMovies = localStorage.getItem('moviesLastRequest');
     if (lastMovies) {
-      setFoundMovies(getLastRequestFromLocalStorage('lastRequestedMovies'));
+      setFoundMovies(getLastRequestFromLocalStorage('moviesLastRequest'));
     }
     const lastRequestedKeyword = localStorage.getItem('lastRequest');
     if (lastRequestedKeyword) {
       setSearchRequest(getLastRequestFromLocalStorage('lastRequest'));
     }
-    const lastRequestedCheckboxState = localStorage.getItem('checkboxState');
-    if (lastRequestedCheckboxState) {
-      setIsCheckboxActive(getLastRequestFromLocalStorage('checkboxState'));
+    const lastRequestedCheckbox = localStorage.getItem('checkbox');
+    if (lastRequestedCheckbox) {
+      setIsCheckboxActive(getLastRequestFromLocalStorage('checkbox'));
     }
     return;
   }
@@ -154,7 +153,7 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
         handleSearch={setSearchRequest}
         handleCheckboxClick={handleCheckboxClick}
         searchRequest={searchRequest}
-        checkboxState={isCheckboxActive}
+        checkbox={isCheckboxActive}
       />
       {/* <MoviesCardList cardsMovie={cardsMovie} /> */}
       <MoviesCardList

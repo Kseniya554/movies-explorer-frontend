@@ -22,7 +22,6 @@ import moviesMap from '../MoviesMap/MoviesMap';
 
 function App() {
   const navigate = useNavigate();
-  const [movies, setMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem('loggedIn') || false
   );
@@ -74,12 +73,6 @@ function App() {
         });
     }
   }, [loggedIn]);
-
-  // useEffect(() => {
-  //   moviesApi.getAllMovies().then((movies) => {
-  //     setMovies(movies);
-  //   });
-  // }, []);
 
   const resetError = useCallback(
     (clearError = '') => {
@@ -154,8 +147,8 @@ function App() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('lastRequest');
-    localStorage.removeItem('checkboxState');
-    localStorage.removeItem('lastRequestedMovies');
+    localStorage.removeItem('checkbox');
+    localStorage.removeItem('moviesLastRequest');
     localStorage.removeItem('allMovies');
     setLoggedIn(false);
     setCurrentUser({});

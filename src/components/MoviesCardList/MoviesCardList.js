@@ -22,7 +22,6 @@ function MoviesCardList({
           <Preloader />
         ) : (
           movies.map((movie, movieIndex) => {
-            // console.log(movies)
             return (
               movieIndex < limit &&
               <MoviesCard

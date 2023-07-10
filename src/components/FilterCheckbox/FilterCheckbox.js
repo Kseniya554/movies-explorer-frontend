@@ -1,7 +1,7 @@
 import React from 'react';
 import './FilterCheckbox.css';
 
-function FilterCheckbox({ onClick, checkboxState }) {
+function FilterCheckbox({ onClick, checkbox }) {
   return (
     <section className='filter-checkbox'>
       {/* <div className='filter-checkbox__container'> */}
@@ -10,7 +10,7 @@ function FilterCheckbox({ onClick, checkboxState }) {
             type='checkbox'
             className='filter-checkbox__checkbox-click'
             onChange={(e) => onClick(e.target.checked)}
-            checked={checkboxState}
+            checked={checkbox}
           />
           <div className='filter-checkbox__checkbox-name'></div>
         </label>

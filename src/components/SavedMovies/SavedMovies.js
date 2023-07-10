@@ -96,13 +96,13 @@ function SavedMovies({ initialMovies, onSave, onDelete, savedMovies }) {
         handleSearch={setSearchRequest}
         handleCheckboxClick={setIsCheckboxActive}
         searchRequest={searchRequest}
-        checkboxState={isCheckboxActive}
+        checkbox={isCheckboxActive}
       />
       {isLoading ? (
         <Preloader />
       ) : (
         <MoviesCardList
-          movies={getMoviesList()} // здесь используем нашу новую функцию
+          movies={getMoviesList()} 
           isSavedMovie={true}
           onSave={onSave}
           onDelete={onDelete}
@@ -118,7 +118,3 @@ function SavedMovies({ initialMovies, onSave, onDelete, savedMovies }) {
 }
 
 export default SavedMovies;
-
-// Другие функции обработчики были убраны или перенесены внутрь useEffect для упрощения и оптимизации кода.
-// Функция handleMoreClick была мемоизирована с использованием useCallback, чтобы предотвратить ненужное создание новых функций на каждую отрисовку.
-// Мы удалили некоторые неиспользуемые функции, объединили useEffect, упростили выбор фильмов с помощью функции getMoviesList, и использовали useCallback для функции handleMoreClick, чтобы предотвратить ненужные перерисовки.

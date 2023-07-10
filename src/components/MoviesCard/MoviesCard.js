@@ -1,6 +1,6 @@
 import React from 'react';
 import './MoviesCard.css';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import durationMovie from '../../utils/Duration';
 
 function MoviesCard({ isSavedMovie, movie, savedMovies, onSave, onDelete }) {
@@ -55,11 +55,6 @@ function MoviesCard({ isSavedMovie, movie, savedMovies, onSave, onDelete }) {
               isSavedMovie = onDelete(movie._id);
             }}
           >
-            {/* <img
-            className='movies-card__icon'
-            src={deleteButton}
-            alt='удалить'
-          ></img> */}
           </button>
         )}
       </div>

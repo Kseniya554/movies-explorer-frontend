@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
-// import buttonProfile from '../../images/profile.svg';
 import burgerButton from '../../images/burger-menu.svg';
 import closeButton from '../../images/close.svg';
 
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // const handleMenuClick = () => setIsMenuOpen(true);
   const location = useLocation();
 
   return (
