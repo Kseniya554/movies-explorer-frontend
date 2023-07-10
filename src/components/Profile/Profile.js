@@ -3,12 +3,12 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import validation from '../../utils/Validation';
+import useValidation from '../../utils/Validation';
 
 function Profile({ onUpdateUserInfo, signOut, isLoading, errorMessage }) {
   const currentUser = useContext(CurrentUserContext);
   const { errors, values, isValid, handleChange, resetValidation } =
-    validation();
+  useValidation();
   const { email, name } = values;
   const [isDisabled, setIsDisabled] = useState(false);
 

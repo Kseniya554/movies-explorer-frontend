@@ -5,27 +5,19 @@ import SearchForm from '../SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import errorImg from '../../images/Error.svg';
 import {
   MOVIES_12,
   MOVIES_8,
   MOVIES_5,
-  MOVIES_3_ADD,
-  MOVIES_2_ADD,
-  WIDTH_3_MOVIES,
-  WIDTH_2_MOVIES,
+  MOVIES_3_MORE,
+  MOVIES_2_MORE,
+  WIDTH_1020,
+  WIDTH_690,
   SHORT_FILM,
 } from '../../constants/constants';
 import useWindowWidth from '../../utils/Width';
 
-function Movies({
-  // movies,
-  // isOwner,
-  initialMovies,
-  onSave,
-  onDelete,
-  savedMovies,
-}) {
+function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
   const [isLoading, setIsLoading] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
@@ -37,7 +29,7 @@ function Movies({
     current: 0,
     next: 0,
   });
-  const {width} = useWindowWidth();
+  const { width } = useWindowWidth();
 
   useEffect(() => {
     searchMoviesHandler();
@@ -50,7 +42,7 @@ function Movies({
   }, []);
 
   useEffect(() => {
-    resize()
+    resize();
   }, [width]);
 
   function filterShotMoviesHandler() {
@@ -130,20 +122,20 @@ function Movies({
   }
 
   function resize() {
-    if (width >= WIDTH_3_MOVIES) {
+    if (width >= WIDTH_1020) {
       setMoviesToInitialRender({
         current: MOVIES_12,
-        next: MOVIES_3_ADD,
+        next: MOVIES_3_MORE,
       });
-    } else if (width < WIDTH_2_MOVIES) {
+    } else if (width < WIDTH_690) {
       setMoviesToInitialRender({
         current: MOVIES_5,
-        next: MOVIES_2_ADD,
+        next: MOVIES_2_MORE,
       });
     } else {
       setMoviesToInitialRender({
         current: MOVIES_8,
-        next: MOVIES_2_ADD,
+        next: MOVIES_2_MORE,
       });
     }
   }

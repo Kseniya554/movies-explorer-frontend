@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-// import React from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import './App.css';
 import Login from '../Login/Login';
@@ -7,7 +6,6 @@ import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
-// import initialMovies from '../../constants/initialMovies';
 
 import moviesApi from '../../utils/MoviesApi';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -63,12 +61,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    moviesApi.getAllMovies().then((movies) => {
-      setMovies(movies);
-    });
-  }, []);
-
-  useEffect(() => {
     mainApi.setToken();
     if (loggedIn) {
       mainApi
@@ -82,6 +74,12 @@ function App() {
         });
     }
   }, [loggedIn]);
+
+  // useEffect(() => {
+  //   moviesApi.getAllMovies().then((movies) => {
+  //     setMovies(movies);
+  //   });
+  // }, []);
 
   const resetError = useCallback(
     (clearError = '') => {
@@ -162,11 +160,6 @@ function App() {
     setLoggedIn(false);
     setCurrentUser({});
     navigate('/');
-  }
-
-  function closeAllPopups() {
-    setIsMenuPopupOpen(false);
-    setInfoTooltipPopupOpen(false);
   }
 
   function handleGetAllMovies() {
@@ -271,41 +264,33 @@ function App() {
 
           <Route path='/' element={<Main />}></Route>
 
-          {loggedIn ? (
-            <Route
-              path='/movies'
-              // element={<Movies />}
-              element={
-                <Movies
-                  // movies={movies} isOwner={false}
+          <Route
+            path='/movies'                        
+            element={
+              <ProtectedRoute 
+                loggedIn={loggedIn}
+                component={Movies}
                   initialMovies={initialMovies}
                   onSave={handleSaveMovie}
                   onDelete={handleDeleteMovie}
-                  savedMovies={savedMovies}
-                />
-              }
-            ></Route>
-          ) : (
-            <Route path='/movies' element={<Navigate to='/' />} />
-          )}
-
-          {loggedIn ? (
-            <Route
-              path='/saved-movies'
-              element={
-                <SavedMovies
-                  component={SavedMovies}
+                  savedMovies={savedMovies}                  
+              />              
+            }
+          />
+          <Route
+            path='/saved-movies'
+            element={
+              <ProtectedRoute
+                loggedIn={loggedIn} 
+                component={SavedMovies}
+                  initialMovies={savedMovies}
                   onSave={handleSaveMovie}
                   onDelete={handleDeleteMovie}
                   savedMovies={savedMovies}
-                  initialMovies={savedMovies}
-                />
-              }
-            ></Route>
-          ) : (
-            <Route path='/saved-movies' element={<Navigate to='/' />} />
-          )}
-
+                  
+              />
+            }
+          />
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </CurrentUserContext.Provider>

@@ -1,12 +1,10 @@
 import React from 'react';
 import './MoviesCard.css';
 import { Link, useLocation } from 'react-router-dom';
-// import saveButton from '../../images/save.svg';
-// import deleteButton from '../../images/deleteButton.svg';
 import durationMovie from '../../utils/Duration';
 
-function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
-  const { nameRU, image,  duration } = movie;
+function MoviesCard({ isSavedMovie, movie, savedMovies, onSave, onDelete }) {
+  const { nameRU, image, duration } = movie;
   const convertedDuration = durationMovie(duration);
   const location = useLocation();
 
@@ -18,6 +16,9 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
       return true;
     }
   })
+  const cardSaveButtonClassName = ( 
+    `movies-card__button ${isClick && 'movies-card__button_active'}`
+  );
 
   return (
     <article className='movies-card'>
@@ -36,26 +37,20 @@ function MoviesCard({ movie, isSavedMovie, onSave, onDelete, savedMovies }) {
 
         {location.pathname === '/movies' && (
           <button
-            className={ `movies-card__button ${isSavedMovie ? 'movies-card__button_active' : 'movies-card__button'}`}
+            className={cardSaveButtonClassName}
             name='movies-card__save-button'
-            type='button'
-            // onClick={onSave}
+            type='button'            
             onClick={() => {
               isClick || isSavedMovie ? onDelete(movie._id ? movie._id : clickId) : onSave(movie);
             }}
-          >
-            {/* <img
-            className='movies-card__icon'
-            src={saveButton}
-            alt='сохранить'
-          ></img> */}
+          >            
           </button>
         )}
         {location.pathname === '/saved-movies' && (
           <button
             className='movies-card__button movies-card__button-delete'
             name='movies-card__delete-button'
-            type='delete'
+            type='button'
             onClick={() => {
               isSavedMovie = onDelete(movie._id);
             }}

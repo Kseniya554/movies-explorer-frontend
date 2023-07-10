@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 // import search from '../../images/find.svg'
-import validation from '../../utils/Validation';
+import useValidation from '../../utils/Validation';
 
 function SearchForm({
   handleSearch,
@@ -11,7 +11,7 @@ function SearchForm({
   checkboxState,
 }) {
   const { errors, values, isValid, handleChange, resetValidation } =
-    validation();
+  useValidation();
   const { movietitle } = values;
   // console.log(values);
 

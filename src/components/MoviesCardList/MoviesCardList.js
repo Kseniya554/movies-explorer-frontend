@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
 function MoviesCardList({
   movies,
-  isOwner,
   isSavedMovie,
   onSave,
   onDelete,
@@ -16,32 +15,23 @@ function MoviesCardList({
   limit,
 }) {
   const location = useLocation();
-    // Скрытие кнопки "Ещё" после отображения всех карточек
-  // const cards = document.querySelectorAll('.card');
-  // const moreButton = document.querySelector('.dop__button');
-
-  // function hideMoreButton() {
-  // if (movies.length === 0) {
-  // moreButton.style.display = 'none';
-  // }
-  // }
   return (
     <>
       <section className='movies-section'>
         {isLoading ? (
           <Preloader />
         ) : (
-          movies?.map((movie, length, array) => {
+          movies.map((movie, movieIndex) => {
             // console.log(movies)
             return (
-              length < limit &&
+              movieIndex < limit &&
               <MoviesCard
                 isSavedMovie={isSavedMovie}
-                movie={movie}
-                key={movie.movieId}
+                movie={movie}                
                 savedMovies={savedMovies}
                 onSave={onSave}
                 onDelete={onDelete}
+                key={movie.movieId}
               />
             );
           })
@@ -53,7 +43,7 @@ function MoviesCardList({
             Ещё
           </button> 
         </section>
-      )}console.log('dop__button')
+      )}
       {location.pathname === '/saved-movies' && (
         <div className='dop-block'></div>
       )}

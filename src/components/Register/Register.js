@@ -3,11 +3,11 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/green-logo.svg';
 import Preloader from '../Preloader/Preloader';
-import validation from '../../utils/Validation';
+import useValidation from '../../utils/Validation';
 
 function Register({ ...props }) {
   const { errors, values, isValid, handleChange, resetValidation } =
-    validation();
+  useValidation();
 
   useEffect(() => {
     resetValidation();
