@@ -5,6 +5,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import imageError from '../../images/Error.svg';
+
 import {
   MOVIES_12,
   MOVIES_8,
@@ -116,7 +118,7 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
     setIsCheckboxActive(value);
   }
 
-  function closeAllPopups() {
+  function closePopup() {
     setInfoTooltipPopupOpen(false);
   }
 
@@ -167,13 +169,12 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
         onDelete={onDelete}
         savedMovies={savedMovies}
       />
-      {/* <InfoTooltip
+      <InfoTooltip
         isOpen={isInfoTooltipPopupOpen}
         title={infoTooltipText}
-        onClose={closeAllPopups}
-        // onOverlayClick={handleOverlayClick}
-        image={errorImg}
-      /> */}
+        onClose={closePopup}
+        image={imageError}
+      />
       <Footer />
     </section>
   );

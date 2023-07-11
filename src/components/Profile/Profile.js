@@ -52,6 +52,7 @@ function Profile({ onUpdateUserInfo, signOut, isLoading, errorMessage }) {
             name='email'
             value={values.email || ''}
             onChange={handleChange}
+            pattern="^[A-Za-z0-9_.+\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-.]+$"
           />
         </label>
       </fieldset>

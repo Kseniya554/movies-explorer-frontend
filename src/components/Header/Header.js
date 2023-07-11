@@ -5,12 +5,6 @@ import logo from '../../images/green-logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 function Header() {
-  // const [login, setLogin] = React.useState();
-  // const [authorized, setAuthorized] = React.useState();
-
-  // React.useEffect(() => {
-
-  // })
   return (
     <header className='header'>
       <Link to='/'>

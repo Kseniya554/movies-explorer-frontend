@@ -134,9 +134,15 @@ function App() {
       .then(() => {
         setCurrentUser({ email, name });
         setErrorMessage('Данные успешно обновлены!');
+        setInfoTooltipText('Данные успешно обновлены!');
+        setInfoTooltipPopupOpen(true);
+        setRegistered(true);
       })
       .catch((error) => {
         setErrorMessage(error.message);
+        setRegistered(false);
+        setInfoTooltipText('Что-то пошло не так! Попробуйте ещё раз.');
+        setInfoTooltipPopupOpen(true);
       })
       .finally(() => {
         setIsLoading(false);
@@ -206,6 +212,10 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  function closePopup() {
+    setInfoTooltipPopupOpen(false);
   }
 
   return (
@@ -286,6 +296,13 @@ function App() {
           />
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
+
+        <InfoTooltip
+          isOpen={isInfoTooltipPopupOpen}
+          title={infoTooltipText}
+          onClose={closePopup}
+          image={registered ? imageOk : imageError}
+        />
       </CurrentUserContext.Provider>
     </div>
   );

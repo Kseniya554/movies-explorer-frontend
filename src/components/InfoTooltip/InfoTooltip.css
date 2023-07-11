@@ -53,7 +53,7 @@
 
 .close-button {
     background-color: rgba(0, 0, 0, 0.5);
-    background-image: url(../../images/Close.svg);
+    background-image: url(../../images/close.svg);
     background-size: cover;
     position: absolute;
     border: none;
