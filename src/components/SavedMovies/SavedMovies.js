@@ -16,9 +16,13 @@ import {
   WIDTH_690,
 } from '../../constants/constants';
 import useWindowWidth from '../../utils/Width';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import imageError from '../../images/Error.svg';
 
 function SavedMovies({ initialMovies, onSave, onDelete, savedMovies }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
+  const [infoTooltipText, setInfoTooltipText] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
   const [shotMovies, setShotMovies] = useState([]);
   const [searchRequest, setSearchRequest] = useState('');
@@ -29,58 +33,80 @@ function SavedMovies({ initialMovies, onSave, onDelete, savedMovies }) {
   });
   const { width } = useWindowWidth();
 
-  // 1. Объединены все вызовы useEffect, для упрощения кода и оптимизации.
   useEffect(() => {
     setFoundMovies(initialMovies);
-    if (searchRequest.length > 0 || isCheckboxActive) {
-      setIsLoading(true);
-      try {
-        // Убран вызов searchMoviesHandler и вызов handleSearch перенесен непосредственно сюда.
-        if (searchRequest.length > 0) {
-          const moviesToRender = initialMovies.filter((movie) => {
-            const a = searchRequest.toLowerCase().trim();
-            return movie.nameRU.toLowerCase().indexOf(a) !== -1 || movie.nameEN.toLowerCase().indexOf(a) !== -1;
-          });
+  }, [])
 
-          if (moviesToRender.length !== 0) {
-            setFoundMovies(moviesToRender);
-          }
+  useEffect(() => {
+    searchMoviesHandler();
+    filterShotMoviesHandler();
+  }, [searchRequest, isCheckboxActive]);
+
+  useEffect(() => {
+    resize()
+  }, [width]);
+
+  async function searchMoviesHandler() {
+    setIsLoading(true);
+    try {
+      if(searchRequest.length > 0) {
+        const moviesToRender = await handleSearch(initialMovies, searchRequest);
+        if(moviesToRender.length === 0) {
+          setInfoTooltipText('Не найдено');
+          setInfoTooltipPopupOpen(true);
+        } else {
+          setFoundMovies(moviesToRender);
         }
-        // Убран вызов filterShotMoviesHandler и вызов handleFilter перенесен непосредственно сюда.
-        setShotMovies(foundMovies.filter((movie) => movie.duration <= SHORT_FILM));
-        return;
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setIsLoading(false);
       }
+      return
+    } catch(err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
-    // Перенесена логика resize внутрь этого useEffect.
-    if (width >= WIDTH_1020) {
-      setMoviesToInitialRender({
-        current: MOVIES_12,
-        next: MOVIES_3_MORE,
-      });
-    } else if (width < WIDTH_690) {
-      setMoviesToInitialRender({
-        current: MOVIES_5,
-        next: MOVIES_2_MORE,
-      });
-    } else {
-      setMoviesToInitialRender({
-        current: MOVIES_8,
-        next: MOVIES_2_MORE,
-      });
-    }
-  }, [searchRequest, isCheckboxActive, width, initialMovies, foundMovies]);
+  }
 
-  // 2. Используется useCallback для мемоизации функций обратного вызова.
-  const handleMoreClick = useCallback(() => {
-    setMoviesToInitialRender({
-      current: moviesToInitialRender.current + moviesToInitialRender.next,
-      next: moviesToInitialRender.next,
+  function handleSearch(moviesArray, keyword) {
+    return moviesArray.filter((movie) => {
+      const a = keyword.toLowerCase().trim();
+      return movie.nameRU.toLowerCase().indexOf(a) !== -1 ||
+      movie.nameEN.toLowerCase().indexOf(a) !== -1
+    })
+  }
+
+  function handleFilter(moviesArray) {
+    return moviesArray.filter((movie) => {
+      return movie.duration <= SHORT_FILM;
     });
-  }, [moviesToInitialRender]);
+  }
+
+  function filterShotMoviesHandler() {
+    setShotMovies(handleFilter(foundMovies));
+  }
+
+  function handleCheckboxClick(value) {
+    setIsCheckboxActive(value);
+  }
+
+  function closePopup() {
+    setInfoTooltipPopupOpen(false);
+  }
+
+  
+
+  function resize() {
+    if( width >= WIDTH_1020) {
+      setMoviesToInitialRender({current: MOVIES_12, next: MOVIES_3_MORE});
+    } else if( width < WIDTH_690) {
+      setMoviesToInitialRender({current: MOVIES_5, next: MOVIES_2_MORE});
+    } else {
+      setMoviesToInitialRender({current: MOVIES_8, next: MOVIES_2_MORE});
+    }
+  }
+
+  function handleMoreClick() {
+    setMoviesToInitialRender({current: moviesToInitialRender.current + moviesToInitialRender.next, next: moviesToInitialRender.next});
+  }
 
   const getMoviesList = () => {
     if (!searchRequest) {
@@ -94,7 +120,7 @@ function SavedMovies({ initialMovies, onSave, onDelete, savedMovies }) {
       <Header />
       <SearchForm
         handleSearch={setSearchRequest}
-        handleCheckboxClick={setIsCheckboxActive}
+        handleCheckboxClick={handleCheckboxClick}
         searchRequest={searchRequest}
         checkbox={isCheckboxActive}
       />
@@ -112,6 +138,12 @@ function SavedMovies({ initialMovies, onSave, onDelete, savedMovies }) {
           limit={moviesToInitialRender.current}
         />
       )}
+      <InfoTooltip
+        isOpen={isInfoTooltipPopupOpen}
+        title={infoTooltipText}
+        onClose={closePopup}
+        image={imageError}
+      />
       <Footer />
     </section>
   );

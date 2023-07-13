@@ -16,34 +16,37 @@ class MainApi {
     }
   }
 
-  getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
+  async getUserInfo() {
+    const response = await fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers,
-    }).then(this._getResponseData);
+    });
+    return this._getResponseData(response);
   }
 
-  _getSavedMovies() {
-    return fetch(`${this._url}/movies`, {
+  async _getSavedMovies() {
+    const response = await fetch(`${this._url}/movies`, {
       method: 'GET',
       headers: this._headers,
-    }).then(this._getResponseData);
+    });
+    return this._getResponseData(response);
   }
 
   getAllNeededData() {
     return Promise.all([this.getUserInfo(), this._getSavedMovies()]);
   }
 
-  patchUserInfo(data) {
-    return fetch(`${this._url}/users/me`, {
+  async patchUserInfo(data) {
+    const response = await fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then(this._getResponseData);
+    });
+    return this._getResponseData(response);
   }
 
-  postNewMovie(data) {
-    return fetch(`${this._url}/movies`, {
+  async postNewMovie(data) {
+    const response = await fetch(`${this._url}/movies`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -59,19 +62,18 @@ class MainApi {
         nameRU: data.nameRU,
         nameEN: data.nameEN,
       }),
-    }).then(this._getResponseData);
+    });
+    return this._getResponseData(response);
   }
 
-  deleteMovie(movieId) {
-    return fetch(`${this._url}/movies/${movieId}`, {
+  async deleteMovie(movieId) {
+    const response = await fetch(`${this._url}/movies/${movieId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._getResponseData);
+    });
+    return this._getResponseData(response);
   }
 
-  // getToken() {
-  //   return this._headers.authorization = `Bearer ${localStorage.getItem('jwt')}`;
-  // }
   setToken() {
     this._headers.Authorization = `Bearer ${localStorage.getItem('jwt')}`;
   }

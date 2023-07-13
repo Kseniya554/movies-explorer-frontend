@@ -25,19 +25,23 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem('loggedIn') || false
   );
+  // const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
-  const [userData, setUserData] = useState({
-    password: '',
-    email: '',
-    name: '',
-  });
   const [registered, setRegistered] = useState(false);
   const [infoTooltipText, setInfoTooltipText] = useState('');
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
+
+  // useEffect(() => {
+  //   if (localStorage.getItem('loggedIn') || false) {
+  //     setLoggedIn(true);
+  //   } else {
+  //     setLoggedIn(false);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -52,11 +56,12 @@ function App() {
           });
         })
         .catch((err) => console.log(err));
-    }
-  }, [navigate]);
+    } console.log(3)
+  }, []);
 
   useEffect(() => {
     getLocalStorage();
+    console.log(1)
   }, []);
 
   useEffect(() => {
@@ -71,18 +76,23 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-    }
-  }, [loggedIn]);
+    } console.log(2)
+  }, []);
 
-  const resetError = useCallback(
-    (clearError = '') => {
-      setErrorMessage(clearError);
-    },
-    [setErrorMessage]
-  );
+  //   const resetError = useCallback(
+  //   (clearError = '') => {
+  //     setErrorMessage(clearError);
+  //   },
+  //   [setErrorMessage]
+  // );
   useEffect(() => {
-    resetError();
-  }, [resetError, navigate]);
+    setErrorMessage('');
+    console.log(4)
+    }, [errorMessage, navigate]); 
+  // useEffect(() => {
+  //   resetError();
+  //   console.log(4)
+  // }, [resetError, navigate]);
 
   function handleRegister({ email, password, name }) {
     setIsLoading(true);
@@ -268,29 +278,29 @@ function App() {
           <Route path='/' element={<Main />}></Route>
 
           <Route
-            path='/movies'                        
+            path='/movies'
             element={
-              <ProtectedRoute 
+              <ProtectedRoute
                 loggedIn={loggedIn}
                 component={Movies}
-                  initialMovies={initialMovies}
-                  onSave={handleSaveMovie}
-                  onDelete={handleDeleteMovie}
-                  savedMovies={savedMovies}                  
-              />              
+                initialMovies={initialMovies}
+                onSave={handleSaveMovie}
+                onDelete={handleDeleteMovie}
+                savedMovies={savedMovies}
+                signOut={handleSignOut}
+              />
             }
           />
           <Route
             path='/saved-movies'
             element={
               <ProtectedRoute
-                loggedIn={loggedIn} 
+                loggedIn={loggedIn}
                 component={SavedMovies}
-                  initialMovies={savedMovies}
-                  onSave={handleSaveMovie}
-                  onDelete={handleDeleteMovie}
-                  savedMovies={savedMovies}
-                  
+                initialMovies={savedMovies}
+                onSave={handleSaveMovie}
+                onDelete={handleDeleteMovie}
+                savedMovies={savedMovies}
               />
             }
           />

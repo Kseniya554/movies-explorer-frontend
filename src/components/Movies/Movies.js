@@ -108,7 +108,8 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
       setIsCheckboxActive(getLastRequestFromLocalStorage('checkbox'));
     }
     return;
-  }
+  } 
+  // console.log(checkLastRequest)
 
   function getLastRequestFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key));
@@ -147,7 +148,7 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
       next: moviesToInitialRender.next,
     });
   }
-
+ 
   return (
     <section className='movies'>
       <Header />
@@ -157,9 +158,7 @@ function Movies({ initialMovies, onSave, onDelete, savedMovies }) {
         searchRequest={searchRequest}
         checkbox={isCheckboxActive}
       />
-      {/* <MoviesCardList cardsMovie={cardsMovie} /> */}
       <MoviesCardList
-        // movies={movies} isOwner={isOwner}
         movies={isCheckboxActive ? shotMovies : foundMovies}
         isLoading={isLoading}
         onClick={handleMoreClick}
