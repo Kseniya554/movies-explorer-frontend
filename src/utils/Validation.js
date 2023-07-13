@@ -15,9 +15,9 @@ function useValidation() {
   }
 
   const resetValidation = useCallback(
-    (newErrors = {}, newValues = {}, newIsValid = false) => {
-      setErrors(newErrors);
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
       setValues(newValues);
+      setErrors(newErrors);
       setIsValid(newIsValid);
     },
     [setValues, setErrors, setIsValid]
