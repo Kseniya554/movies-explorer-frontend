@@ -25,7 +25,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem('loggedIn') || false
   );
-  // const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [registered, setRegistered] = useState(false);
@@ -34,14 +33,6 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
-
-  // useEffect(() => {
-  //   if (localStorage.getItem('loggedIn') || false) {
-  //     setLoggedIn(true);
-  //   } else {
-  //     setLoggedIn(false);
-  //   }
-  // }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -56,12 +47,11 @@ function App() {
           });
         })
         .catch((err) => console.log(err));
-    } console.log(3)
+    }
   }, []);
 
   useEffect(() => {
     getLocalStorage();
-    console.log(1)
   }, []);
 
   useEffect(() => {
@@ -76,23 +66,12 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-    } console.log(2)
+    }
   }, []);
 
-  //   const resetError = useCallback(
-  //   (clearError = '') => {
-  //     setErrorMessage(clearError);
-  //   },
-  //   [setErrorMessage]
-  // );
   useEffect(() => {
     setErrorMessage('');
-    console.log(4)
-    }, [errorMessage, navigate]); 
-  // useEffect(() => {
-  //   resetError();
-  //   console.log(4)
-  // }, [resetError, navigate]);
+    }, [errorMessage, navigate]);
 
   function handleRegister({ email, password, name }) {
     setIsLoading(true);

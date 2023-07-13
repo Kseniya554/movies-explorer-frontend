@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+// import search from '../../images/find.svg'
 import useValidation from '../../utils/Validation';
 
 function SearchForm({
@@ -12,7 +13,7 @@ function SearchForm({
   const { errors, values, isValid, handleChange, resetValidation } =
   useValidation();
   const { movietitle } = values;
-  const [searchValue, setSearchValue] = useState(searchRequest || '');
+
 
   useEffect(() => {
     resetValidation({ movietitle: searchRequest });
@@ -22,13 +23,8 @@ function SearchForm({
     e.preventDefault();
     handleSearch(movietitle);
   }
-
-  function handleChangeValue(e) {
-    setSearchValue(e.target.value)
-    handleChange(e);
-  }
-  console.log(searchValue)
-
+  console.log(movietitle);
+  // console.log(handleSearch)
   return (
     <section className='search-form'>
       <form
@@ -43,10 +39,8 @@ function SearchForm({
             placeholder='        Фильм'
             required
             minLength='1'
-            onChange={handleChangeValue}
-            // value={values.movietitle || lastRequest}
-            // value={values.movietitle || ''}
-            value={ searchValue || ''}
+            onChange={handleChange}
+            value={values.movietitle || ''}
             name='movietitle'
           />
           <button
@@ -63,6 +57,7 @@ function SearchForm({
                 : ''
             }`}
           ></span>
+          {/* <span className='search-form__input-error'></span> */}
         </div>
         <FilterCheckbox
           onClick={handleCheckboxClick}
