@@ -10,7 +10,7 @@ function SearchForm({
   checkbox,
 }) {
   const { errors, values, isValid, handleChange, resetValidation } =
-  useValidation();
+    useValidation();
   const { movietitle } = values;
 
   useEffect(() => {
@@ -34,27 +34,24 @@ function SearchForm({
             type='text'
             placeholder='        Фильм'
             required
-            minLength='1'
             onChange={handleChange}
             value={values.movietitle || ''}
             name='movietitle'
-          />
+          />          
           <button
-            className={`search-form__button`}
-            type='submit'
+            className={'search-form__button'}
+            type='submit'           
           />
           {/* <span
             className={`search-form__input-error ${
-              errors.movietitle
+              !isValid && errors.movietitle
                 ? 'search-form__input-error_active'
                 : ''
-            }`} */}
-          {/* ></span> */}
+            }`}
+            id='movietitle-error'
+          ></span> */}
         </div>
-        <FilterCheckbox
-          onClick={handleCheckboxClick}
-          checkbox={checkbox}
-        />
+        <FilterCheckbox onClick={handleCheckboxClick} checkbox={checkbox} />
       </form>
     </section>
   );
