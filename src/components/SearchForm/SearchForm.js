@@ -40,19 +40,16 @@ function SearchForm({
             name='movietitle'
           />
           <button
-            className={`search-form__button ${
-              !isValid && errors ? 'search-form__button_disabled' : ''
-            }`}
+            className={`search-form__button`}
             type='submit'
-            disabled={!isValid}
           />
-          <span
+          {/* <span
             className={`search-form__input-error ${
-              !isValid && errors.movietitle
+              errors.movietitle
                 ? 'search-form__input-error_active'
                 : ''
-            }`}
-          ></span>
+            }`} */}
+          {/* ></span> */}
         </div>
         <FilterCheckbox
           onClick={handleCheckboxClick}

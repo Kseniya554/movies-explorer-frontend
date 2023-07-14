@@ -33,6 +33,11 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
+  const [userData, setUserData] = useState({
+    password: '',
+    email: '',
+    name: '',
+  });
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -48,7 +53,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     getLocalStorage();
@@ -67,11 +72,19 @@ function App() {
           console.log(err);
         });
     }
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
     setErrorMessage('');
     }, [errorMessage, navigate]);
+    
+    const resetErrorMessage = useCallback((clearErrorMessage='') => {
+      setErrorMessage(clearErrorMessage)
+    }, [setErrorMessage])
+  
+    useEffect(() => {
+      resetErrorMessage();
+    }, [resetErrorMessage, navigate]);
 
   function handleRegister({ email, password, name }) {
     setIsLoading(true);
